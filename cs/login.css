@@ -1,0 +1,182 @@
+/* =====================================
+   DOALINK - LOGIN
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:linear-gradient(135deg,#2E7D32,#43A047);
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.container{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+}
+
+.card-login{
+
+    width:400px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:40px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+.card-login h1{
+
+    text-align:center;
+
+    color:#2E7D32;
+
+    margin-bottom:10px;
+
+    font-size:36px;
+
+}
+
+.card-login p{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:30px;
+
+}
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+label{
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#333;
+
+}
+
+input{
+
+    padding:14px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+input:focus{
+
+    border-color:#2E7D32;
+
+    box-shadow:0 0 5px rgba(46,125,50,.4);
+
+}
+
+button{
+
+    margin-top:30px;
+
+    padding:15px;
+
+    background:#2E7D32;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#1B5E20;
+
+}
+
+.links{
+
+    text-align:center;
+
+    margin-top:25px;
+
+}
+
+.links a{
+
+    text-decoration:none;
+
+    color:#2E7D32;
+
+    font-weight:500;
+
+}
+
+.links a:hover{
+
+    text-decoration:underline;
+
+}
+
+@media(max-width:500px){
+
+    .card-login{
+
+        width:100%;
+
+        padding:30px;
+
+    }
+
+}

@@ -1,0 +1,214 @@
+/* =====================================
+   DOALINK - PUBLICAR DOAÇÃO
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#f4f4f4;
+
+}
+
+/* ==========================
+        HEADER
+========================== */
+
+header{
+
+    background:#2E7D32;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+}
+
+header h1{
+
+    font-size:30px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:500;
+
+}
+
+nav a:hover{
+
+    color:#C8E6C9;
+
+}
+
+/* ==========================
+      CONTAINER
+========================== */
+
+.container{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:50px 20px;
+
+}
+
+.card{
+
+    background:white;
+
+    width:700px;
+
+    border-radius:15px;
+
+    padding:40px;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+
+.card h2{
+
+    text-align:center;
+
+    color:#2E7D32;
+
+    margin-bottom:30px;
+
+}
+
+/* ==========================
+       FORMULÁRIO
+========================== */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+label{
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+input,
+textarea,
+select{
+
+    padding:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:#2E7D32;
+
+}
+
+textarea{
+
+    resize:none;
+
+}
+
+button{
+
+    margin-top:30px;
+
+    padding:16px;
+
+    background:#2E7D32;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#1B5E20;
+
+}
+
+/* ==========================
+      RESPONSIVO
+========================== */
+
+@media(max-width:768px){
+
+.card{
+
+    width:100%;
+
+}
+
+header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+}

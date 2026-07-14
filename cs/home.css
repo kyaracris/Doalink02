@@ -1,0 +1,288 @@
+/* =====================================
+   DOALINK - HOME
+===================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#f5f5f5;
+
+}
+
+/* ==========================
+        HEADER
+========================== */
+
+header{
+
+    background:#2E7D32;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 8%;
+
+    position:sticky;
+
+    top:0;
+
+}
+
+.logo h1{
+
+    font-size:30px;
+
+}
+
+nav{
+
+    display:flex;
+
+    gap:25px;
+
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+nav a:hover{
+
+    color:#C8E6C9;
+
+}
+
+/* ==========================
+      BEM VINDO
+========================== */
+
+.bem-vindo{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.bem-vindo h2{
+
+    color:#2E7D32;
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+}
+
+.bem-vindo p{
+
+    color:#666;
+
+    font-size:18px;
+
+}
+
+/* ==========================
+      PESQUISA
+========================== */
+
+.pesquisa{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-bottom:50px;
+
+}
+
+.pesquisa input{
+
+    width:60%;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    font-size:17px;
+
+    outline:none;
+
+}
+
+.pesquisa input:focus{
+
+    border-color:#2E7D32;
+
+}
+
+/* ==========================
+        DOAÇÕES
+========================== */
+
+.doacoes{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:30px;
+
+    padding:0 8% 60px;
+
+}
+
+.card{
+
+    width:320px;
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.1);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.card img{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+.card h3{
+
+    color:#2E7D32;
+
+    padding:20px 20px 10px;
+
+}
+
+.card p{
+
+    padding:0 20px 20px;
+
+    color:#666;
+
+}
+
+.card button{
+
+    width:90%;
+
+    margin:0 5% 20px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2E7D32;
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.card button:hover{
+
+    background:#1B5E20;
+
+}
+
+/* ==========================
+        RODAPÉ
+========================== */
+
+footer{
+
+    background:#1B5E20;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+}
+
+/* ==========================
+      RESPONSIVO
+========================== */
+
+@media(max-width:900px){
+
+header{
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+nav{
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.pesquisa input{
+
+    width:90%;
+
+}
+
+.card{
+
+    width:100%;
+
+    max-width:350px;
+
+}
+
+}

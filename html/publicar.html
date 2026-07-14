@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova Doação | DOALINK</title>
+
+    <link rel="stylesheet" href="css/publicar.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>DOALINK</h1>
+
+    <nav>
+
+        <a href="home.html">Início</a>
+
+        <a href="minhas-doacoes.html">Minhas Doações</a>
+
+        <a href="perfil.html">Perfil</a>
+
+    </nav>
+
+</header>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Publicar Nova Doação</h2>
+
+        <form id="formDoacao">
+
+            <label>Nome do Item</label>
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Ex: Cadeira de rodas"
+                required>
+
+            <label>Descrição</label>
+
+            <textarea
+                id="descricao"
+                rows="5"
+                placeholder="Descreva o item..."
+                required></textarea>
+
+            <label>Categoria</label>
+
+            <select id="categoria">
+
+                <option>Alimentos</option>
+
+                <option>Roupas</option>
+
+                <option>Móveis</option>
+
+                <option>Material Escolar</option>
+
+                <option>Brinquedos</option>
+
+                <option>Outros</option>
+
+            </select>
+
+            <label>Cidade</label>
+
+            <input
+                type="text"
+                id="cidade"
+                placeholder="Sua cidade"
+                required>
+
+            <label>Telefone</label>
+
+            <input
+                type="text"
+                id="telefone"
+                placeholder="(00) 00000-0000"
+                required>
+
+            <label>URL da Imagem</label>
+
+            <input
+                type="url"
+                id="imagem"
+                placeholder="https://...">
+
+            <button type="submit">
+
+                Publicar Doação
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/publicar.js"></script>
+
+</body>
+
+</html>
