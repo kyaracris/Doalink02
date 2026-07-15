@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DOALINK | Página Inicial</title>
+    <title>DOALINK | Início</title>
 
     <link rel="stylesheet" href="css/home.css">
 
@@ -22,102 +22,120 @@
 
 <body>
 
-<header>
+    <header>
 
-    <div class="logo">
+        <div class="logo">
+            <h1>DOALINK</h1>
+        </div>
 
-        <h1>DOALINK</h1>
+        <nav>
 
-    </div>
+            <a href="home.html">Início</a>
 
-    <nav>
+            <a href="publicar.html">Publicar Doação</a>
+           
+            <a href="favoritos.html">Favoritos</a>
 
-        <a href="home.html">Início</a>
+            <a href="minhas-doacoes.html">Minhas Doações</a>
 
-        <a href="publicar.html">Nova Doação</a>
+            <a href="perfil.html">Perfil</a>
 
-        <a href="minhas-doacoes.html">Minhas Doações</a>
+            <a href="index.html">Sair</a>
 
-        <a href="perfil.html">Perfil</a>
+        </nav>
 
-        <a href="index.html">Sair</a>
+    </header>
 
-    </nav>
+    <section class="bem-vindo">
 
-</header>
+        <h2 id="nomeUsuario">Bem-vindo!</h2>
 
-<section class="bem-vindo">
+        <p>Conectando pessoas através da solidariedade.</p>
 
-    <h2 id="nomeUsuario">
-        Bem-vindo!
-    </h2>
+    </section>
 
-    <p>
-        Encontre doações perto de você ou publique um item para ajudar alguém.
-    </p>
+    <section class="dashboard">
+
+        <div class="box">
+
+            <h2 id="totalUsuarios">0</h2>
+
+            <p>Usuários</p>
+
+        </div>
+
+        <div class="box">
+
+            <h2 id="totalDoacoes">0</h2>
+
+            <p>Doações</p>
+
+        </div>
+
+        <div class="box">
+
+            <h2 id="totalCidades">0</h2>
+
+            <p>Cidades</p>
+
+        </div>
+
+        <div class="box">
+
+            <h2 id="familias">0</h2>
+
+            <p>Famílias Ajudadas</p>
+
+        </div>
+
+    </section>
+
+    <section class="pesquisa">
+
+        <input
+            type="text"
+            id="pesquisar"
+            placeholder="Pesquisar doações...">
+
+    </section>
+
+
+<!-- FILTRO POR CATEGORIA -->
+<section class="filtros">
+
+    <select id="filtroCategoria">
+
+        <option value="">Todas as categorias</option>
+
+        <option value="Roupas">Roupas</option>
+
+        <option value="Alimentos">Alimentos</option>
+
+        <option value="Móveis">Móveis</option>
+
+        <option value="Material Escolar">Material Escolar</option>
+
+        <option value="Outros">Outros</option>
+
+    </select>
 
 </section>
 
-<section class="pesquisa">
-
-    <input
-        type="text"
-        id="pesquisar"
-        placeholder="Pesquisar doações...">
+<section
+    class="doacoes"
+    id="listaDoacoes">
 
 </section>
 
-<section class="doacoes">
+   
 
-    <div class="card">
+    <footer>
 
-        <img src="https://images.unsplash.com/photo-1517142089942-ba376ce32a2e?auto=format&fit=crop&w=600&q=80">
+        <p></p>
 
-        <h3>Cesta Básica</h3>
+    </footer>
 
-        <p>Disponível para famílias em situação de vulnerabilidade.</p>
-
-        <button>Entrar em Contato</button>
-
-    </div>
-
-    <div class="card">
-
-        <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=600&q=80">
-
-        <h3>Roupas</h3>
-
-        <p>Roupas masculinas e femininas em bom estado.</p>
-
-        <button>Entrar em Contato</button>
-
-    </div>
-
-    <div class="card">
-
-        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?auto=format&fit=crop&w=600&q=80">
-
-        <h3>Livros</h3>
-
-        <p>Livros escolares e de literatura.</p>
-
-        <button>Entrar em Contato</button>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <p>
-
-        © 2026 DOALINK - Todos os direitos reservados.
-
-    </p>
-
-</footer>
-
-<script src="js/home.js"></script>
+    <script src="js/home.js"></script>
 
 </body>
 

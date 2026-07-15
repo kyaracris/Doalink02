@@ -1,122 +1,82 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+// ==============================
+// DOALINK
+// Publicar Doação
+// ==============================
 
-<head>
+const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    <meta charset="UTF-8">
+if(!usuario){
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    window.location.href="login.html";
 
-    <title>Nova Doação | DOALINK</title>
+}
 
-    <link rel="stylesheet" href="css/publicar.css">
+const form=document.getElementById("formDoacao");
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+form.addEventListener("submit",function(e){
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    e.preventDefault();
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    const titulo=document.getElementById("titulo").value;
 
-</head>
+    const descricao=document.getElementById("descricao").value;
 
-<body>
+    const categoria=document.getElementById("categoria").value;
 
-<header>
+    const cidade=document.getElementById("cidade").value;
 
-    <h1>DOALINK</h1>
+    const telefone=document.getElementById("telefone").value;
 
-    <nav>
+    const imagem=document.getElementById("imagem").files[0];
 
-        <a href="home.html">Início</a>
+    let leitor=new FileReader();
 
-        <a href="minhas-doacoes.html">Minhas Doações</a>
+    leitor.onload=function(){
 
-        <a href="perfil.html">Perfil</a>
+        let foto=leitor.result;
 
-    </nav>
+        let doacoes=JSON.parse(localStorage.getItem("doacoes"))||[];
 
-</header>
+        doacoes.push({
 
-<div class="container">
+            id:Date.now(),
 
-    <div class="card">
+            usuario:usuario.nome,
 
-        <h2>Publicar Nova Doação</h2>
+            email:usuario.email,
 
-        <form id="formDoacao">
+            titulo,
 
-            <label>Nome do Item</label>
+            descricao,
 
-            <input
-                type="text"
-                id="titulo"
-                placeholder="Ex: Cadeira de rodas"
-                required>
+            categoria,
 
-            <label>Descrição</label>
+            cidade,
 
-            <textarea
-                id="descricao"
-                rows="5"
-                placeholder="Descreva o item..."
-                required></textarea>
+            telefone,
 
-            <label>Categoria</label>
+            imagem:foto,
 
-            <select id="categoria">
+            data:new Date().toLocaleDateString()
 
-                <option>Alimentos</option>
+        });
 
-                <option>Roupas</option>
+        localStorage.setItem("doacoes",JSON.stringify(doacoes));
 
-                <option>Móveis</option>
+        alert("Doação publicada com sucesso!");
 
-                <option>Material Escolar</option>
+        window.location.href="home.html";
 
-                <option>Brinquedos</option>
+    }
 
-                <option>Outros</option>
+    if(imagem){
 
-            </select>
+        leitor.readAsDataURL(imagem);
 
-            <label>Cidade</label>
+    }else{
 
-            <input
-                type="text"
-                id="cidade"
-                placeholder="Sua cidade"
-                required>
+        alert("Escolha uma imagem.");
 
-            <label>Telefone</label>
+    }
 
-            <input
-                type="text"
-                id="telefone"
-                placeholder="(00) 00000-0000"
-                required>
-
-            <label>URL da Imagem</label>
-
-            <input
-                type="url"
-                id="imagem"
-                placeholder="https://...">
-
-            <button type="submit">
-
-                Publicar Doação
-
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<script src="js/publicar.js"></script>
-
-</body>
-
-</html>
+});
