@@ -217,6 +217,122 @@ function carregarUsuarios() {
 
 carregarUsuarios();
 
+// =============================
+// LISTA DE MENSAGENS
+// =============================
+
+const listaMensagens =
+    document.getElementById("listaMensagens");
+
+function carregarMensagens() {
+
+    listaMensagens.innerHTML = "";
+
+    if (mensagens.length === 0) {
+
+        listaMensagens.innerHTML = `
+
+            <div class="admin-card">
+
+                <p>Nenhuma mensagem recebida.</p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    mensagens.forEach((msg, indice) => {
+
+        listaMensagens.innerHTML += `
+
+            <div class="admin-card">
+
+                <div>
+
+                    <h3>${msg.titulo}</h3>
+
+                    <p>
+                        <strong>Nome:</strong>
+                        ${msg.nome}
+                    </p>
+
+                    <p>
+                        <strong>Telefone:</strong>
+                        ${msg.telefone}
+                    </p>
+
+                    <p>
+                        <strong>Mensagem:</strong>
+                        ${msg.mensagem}
+                    </p>
+
+                    <p>
+                        <strong>Data:</strong>
+                        ${msg.data || "Não informada"}
+                    </p>
+
+                </div>
+
+                <button onclick="excluirMensagem(${indice})">
+
+                    Excluir
+
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+carregarMensagens();
+
+
+// =============================
+// EXCLUIR MENSAGEM
+// =============================
+
+function excluirMensagem(indice) {
+
+    const confirmar = confirm(
+        "Deseja realmente excluir esta mensagem?"
+    );
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+    mensagens.splice(indice, 1);
+
+    localStorage.setItem(
+        "mensagens",
+        JSON.stringify(mensagens)
+    );
+
+    alert("Mensagem excluída com sucesso!");
+
+    location.reload();
+
+}
+
+// =============================
+// SAIR DO PAINEL ADMINISTRATIVO
+// =============================
+
+function sairAdmin() {
+
+    localStorage.removeItem("adminLogado");
+
+    window.location.href = "admin-login.html";
+
+}
 
 // =============================
 // RODAPÉ
