@@ -22,41 +22,118 @@
 
 <body>
 
-<header>
+    <header>
 
-    <h1>PAINEL ADMINISTRATIVO</h1>
+        <div class="logo">
 
-    <nav>
+            <h1>DOALINK</h1>
 
-        <a href="home.html">Home</a>
+            <span>Painel Administrativo</span>
 
-        <a href="perfil.html">Perfil</a>
+        </div>
 
-    </nav>
+        <nav>
 
-</header>
+            <a href="home.html">Início</a>
 
-<main>
+            <a href="mensagens.html">Mensagens</a>
 
-    <section>
+            <a href="index.html">Sair</a>
 
-        <h2>Usuários Cadastrados</h2>
+        </nav>
 
-        <div id="usuarios"></div>
+    </header>
 
-    </section>
 
-    <section>
+    <main>
 
-        <h2>Doações Publicadas</h2>
+        <section class="titulo">
 
-        <div id="doacoes"></div>
+            <h2>Painel Administrativo</h2>
 
-    </section>
+            <p>Gerencie as informações da plataforma DOALINK.</p>
 
-</main>
+        </section>
 
-<script src="js/admin.js"></script>
+
+        <!-- ESTATÍSTICAS -->
+
+        <section class="estatisticas">
+
+            <div class="estatistica">
+
+                <h3 id="totalUsuarios">0</h3>
+
+                <p>Usuários cadastrados</p>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <h3 id="totalDoacoes">0</h3>
+
+                <p>Doações publicadas</p>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <h3 id="totalCidades">0</h3>
+
+                <p>Cidades atendidas</p>
+
+            </div>
+
+
+            <div class="estatistica">
+
+                <h3 id="totalMensagens">0</h3>
+
+                <p>Mensagens recebidas</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- DOAÇÕES -->
+
+        <section class="gerenciamento">
+
+            <h2>Doações cadastradas</h2>
+
+            <div id="listaDoacoes">
+
+            </div>
+
+        </section>
+
+
+        <!-- USUÁRIOS -->
+
+        <section class="gerenciamento">
+
+            <h2>Usuários cadastrados</h2>
+
+            <div id="listaUsuarios">
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p></p>
+
+    </footer>
+
+
+    <script src="js/admin.js"></script>
 
 </body>
 

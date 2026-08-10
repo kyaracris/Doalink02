@@ -1,75 +1,124 @@
-// Busca usuários e doações
+// =====================================
+// DOALINK - ADMIN
+// =====================================
 
-let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+// =====================================
+// VERIFICAÇÃO ADMINISTRATIVA
+// =====================================
 
-let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+const adminLogado =
+    localStorage.getItem("adminLogado");
 
-// Lista usuários
+if (adminLogado !== "true") {
 
-const listaUsuarios = document.getElementById("usuarios");
+    alert("Acesso restrito ao administrador.");
 
-function carregarUsuarios(){
-
-    listaUsuarios.innerHTML = "";
-
-    usuarios.forEach((usuario,index)=>{
-
-        listaUsuarios.innerHTML += `
-
-        <div class="item">
-
-            <strong>${usuario.nome}</strong><br>
-
-            ${usuario.email}
-
-            <br>
-
-            <button onclick="excluirUsuario(${index})">
-
-                Excluir Usuário
-
-            </button>
-
-        </div>
-
-        `;
-
-    });
+    window.location.href = "admin-login.html";
 
 }
 
-carregarUsuarios();
+// Busca os dados armazenados
+let usuarios =
+    JSON.parse(localStorage.getItem("usuarios")) || [];
 
-// Lista doações
+let doacoes =
+    JSON.parse(localStorage.getItem("doacoes")) || [];
 
-const listaDoacoes = document.getElementById("doacoes");
+let mensagens =
+    JSON.parse(localStorage.getItem("mensagens")) || [];
 
-function carregarDoacoes(){
 
-    listaDoacoes.innerHTML="";
+// =============================
+// ESTATÍSTICAS
+// =============================
 
-    doacoes.forEach((doacao,index)=>{
+document.getElementById("totalUsuarios").textContent =
+    usuarios.length;
 
-        listaDoacoes.innerHTML +=`
+document.getElementById("totalDoacoes").textContent =
+    doacoes.length;
 
-        <div class="item">
+document.getElementById("totalMensagens").textContent =
+    mensagens.length;
 
-            <strong>${doacao.titulo}</strong><br>
 
-            ${doacao.usuario}<br>
+// Conta cidades diferentes
+const cidades = [
+    ...new Set(
+        doacoes
+            .map(doacao => doacao.cidade)
+            .filter(cidade => cidade)
+    )
+];
 
-            ${doacao.cidade}
+document.getElementById("totalCidades").textContent =
+    cidades.length;
 
-            <br>
 
-            <button onclick="excluirDoacao(${index})">
+// =============================
+// LISTA DE DOAÇÕES
+// =============================
 
-                Excluir Doação
+const listaDoacoes =
+    document.getElementById("listaDoacoes");
 
-            </button>
+function carregarDoacoes() {
 
-        </div>
+    listaDoacoes.innerHTML = "";
 
+    if (doacoes.length === 0) {
+
+        listaDoacoes.innerHTML = `
+        
+            <div class="admin-card">
+            
+                <p>Nenhuma doação cadastrada.</p>
+            
+            </div>
+        
+        `;
+
+        return;
+
+    }
+
+
+    doacoes.forEach(doacao => {
+
+        listaDoacoes.innerHTML += `
+        
+            <div class="admin-card">
+            
+                <div>
+                
+                    <h3>${doacao.titulo}</h3>
+                
+                    <p>
+                        <strong>Categoria:</strong>
+                        ${doacao.categoria}
+                    </p>
+                
+                    <p>
+                        <strong>Cidade:</strong>
+                        ${doacao.cidade}
+                    </p>
+                
+                    <p>
+                        <strong>Doador:</strong>
+                        ${doacao.usuario}
+                    </p>
+                
+                </div>
+                
+                
+                <button onclick="excluirDoacao(${doacao.id})">
+                
+                    Excluir
+                
+                </button>
+            
+            </div>
+        
         `;
 
     });
@@ -78,34 +127,100 @@ function carregarDoacoes(){
 
 carregarDoacoes();
 
-// Excluir usuário
 
-function excluirUsuario(index){
+// =============================
+// EXCLUIR DOAÇÃO
+// =============================
 
-    if(confirm("Deseja excluir este usuário?")){
+function excluirDoacao(id) {
 
-        usuarios.splice(index,1);
+    const confirmar =
+        confirm("Deseja realmente excluir esta doação?");
 
-        localStorage.setItem("usuarios",JSON.stringify(usuarios));
+    if (!confirmar) {
 
-        carregarUsuarios();
-
-    }
-
-}
-
-// Excluir doação
-
-function excluirDoacao(index){
-
-    if(confirm("Deseja excluir esta doação?")){
-
-        doacoes.splice(index,1);
-
-        localStorage.setItem("doacoes",JSON.stringify(doacoes));
-
-        carregarDoacoes();
+        return;
 
     }
 
+
+    doacoes =
+        doacoes.filter(doacao => doacao.id != id);
+
+
+    localStorage.setItem(
+        "doacoes",
+        JSON.stringify(doacoes)
+    );
+
+
+    alert("Doação excluída com sucesso!");
+
+
+    location.reload();
+
 }
+
+
+// =============================
+// LISTA DE USUÁRIOS
+// =============================
+
+const listaUsuarios =
+    document.getElementById("listaUsuarios");
+
+function carregarUsuarios() {
+
+    listaUsuarios.innerHTML = "";
+
+    if (usuarios.length === 0) {
+
+        listaUsuarios.innerHTML = `
+        
+            <div class="admin-card">
+            
+                <p>Nenhum usuário cadastrado.</p>
+            
+            </div>
+        
+        `;
+
+        return;
+
+    }
+
+
+    usuarios.forEach(usuario => {
+
+        listaUsuarios.innerHTML += `
+        
+            <div class="admin-card">
+            
+                <div>
+                
+                    <h3>${usuario.nome}</h3>
+                
+                    <p>
+                        <strong>E-mail:</strong>
+                        ${usuario.email || "Não informado"}
+                    </p>
+                
+                </div>
+            
+            </div>
+        
+        `;
+
+    });
+
+}
+
+carregarUsuarios();
+
+
+// =============================
+// RODAPÉ
+// =============================
+
+document.querySelector("footer p").textContent =
+    `© ${new Date().getFullYear()} DOALINK - Todos os direitos reservados.`;
