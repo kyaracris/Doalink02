@@ -1,61 +1,126 @@
-// Verifica usuário logado
-const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+// =====================================
+// DOALINK - MINHAS DOAÇÕES
+// =====================================
 
-if(!usuario){
 
-    window.location.href="login.html";
+// Verifica se existe usuário logado
+const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+);
+
+
+if (!usuarioLogado) {
+
+    alert("Faça login para continuar.");
+
+    window.location.href = "login.html";
 
 }
 
+
 // Busca todas as doações
-let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+const doacoes = JSON.parse(
+    localStorage.getItem("doacoes")
+) || [];
 
-// Filtra apenas as do usuário
-let minhas = doacoes.filter(item => item.email === usuario.email);
 
-const lista = document.getElementById("listaDoacoes");
+// Área onde as doações serão exibidas
+const lista = document.getElementById(
+    "listaMinhasDoacoes"
+);
 
-function carregar(){
 
-    lista.innerHTML="";
+// Filtra somente as doações do usuário logado
+const minhasDoacoes = doacoes.filter(function(doacao) {
 
-    if(minhas.length===0){
+    const identificadorUsuario =
+        usuarioLogado.email || usuarioLogado.nome;
 
-        lista.innerHTML=`
+    return doacao.usuarioId === identificadorUsuario;
 
-        <h2 style="grid-column:1/-1;text-align:center;">
-        Você ainda não publicou nenhuma doação.
-        </h2>
+});
 
-        `;
 
-        return;
+// Verifica se o usuário possui doações
+if (minhasDoacoes.length === 0) {
 
-    }
+    lista.innerHTML = `
 
-    minhas.forEach(doacao=>{
+        <div class="sem-doacoes">
 
-        lista.innerHTML +=`
+            <h2>Você ainda não publicou nenhuma doação.</h2>
 
-        <div class="card">
+            <p>
+                Publique uma doação e ajude alguém que precisa! ❤️
+            </p>
 
-            <img src="${doacao.imagem}">
-
-            <h3>${doacao.titulo}</h3>
-
-            <p>${doacao.descricao}</p>
-
-            <p><strong>Categoria:</strong> ${doacao.categoria}</p>
-
-            <p><strong>Cidade:</strong> ${doacao.cidade}</p>
-
-            <button onclick="excluir(${doacao.id})">
-
-                Excluir
-
-            </button>
+            <a href="publicar.html">
+                Publicar uma Doação
+            </a>
 
         </div>
+
+    `;
+
+}
+
+
+// Mostra as doações
+else {
+
+    minhasDoacoes.forEach(function(doacao) {
+
+        lista.innerHTML += `
+
+            <div class="card">
+
+                ${
+                    doacao.imagem
+                    ?
+                    `<img src="${doacao.imagem}" alt="Imagem da doação">`
+                    :
+                    `<div class="sem-imagem">
+                        Sem imagem
+                    </div>`
+                }
+
+                <div class="card-conteudo">
+
+                    <h3>${doacao.titulo}</h3>
+
+                    <p>
+                        ${doacao.descricao}
+                    </p>
+
+                    <p>
+                        <strong>Categoria:</strong>
+                        ${doacao.categoria}
+                    </p>
+
+                    <p>
+                        <strong>Cidade:</strong>
+                        ${doacao.cidade}
+                    </p>
+
+                    <p>
+                        <strong>Telefone:</strong>
+                        ${doacao.telefone}
+                    </p>
+
+                    <p>
+                        <strong>Data:</strong>
+                        ${doacao.data}
+                    </p>
+
+                    <button
+                        onclick="verDetalhes('${doacao.id}')"
+                    >
+                        Ver Detalhes
+                    </button>
+
+                </div>
+
+            </div>
 
         `;
 
@@ -63,24 +128,26 @@ function carregar(){
 
 }
 
-carregar();
 
-function excluir(id){
+// Ver detalhes da doação
+function verDetalhes(id) {
 
-    if(!confirm("Deseja realmente excluir esta doação?")){
+    localStorage.setItem(
+        "doacaoSelecionada",
+        id
+    );
 
-        return;
+    window.location.href = "detalhe.html";
 
-    }
+}
 
-    doacoes = doacoes.filter(item=>item.id!==id);
 
-    localStorage.setItem("doacoes",JSON.stringify(doacoes));
+// Atualiza o ano do rodapé
+const footer = document.querySelector("footer p");
 
-    minhas = doacoes.filter(item=>item.email===usuario.email);
+if (footer) {
 
-    carregar();
-
-    alert("Doação removida com sucesso!");
+    footer.innerHTML =
+        `© ${new Date().getFullYear()} DOALINK - Todos os direitos reservados.`;
 
 }

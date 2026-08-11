@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Minhas Doações | DOALINK</title>
+    <title>DOALINK | Minhas Doações</title>
 
     <link rel="stylesheet" href="css/minhas-doacoes.css">
 
@@ -15,42 +15,78 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
 </head>
 
 <body>
 
-<header>
+    <!-- CABEÇALHO -->
 
-    <h1>DOALINK</h1>
+    <header>
 
-    <nav>
+        <div class="logo">
 
-        <a href="home.html">Início</a>
+            <h1>DOALINK</h1>
 
-        <a href="publicar.html">Nova Doação</a>
+        </div>
 
-        <a href="perfil.html">Perfil</a>
+        <nav>
 
-        <a href="index.html">Sair</a>
+            <a href="home.html">Início</a>
 
-    </nav>
+            <a href="publicar.html">Publicar Doação</a>
 
-</header>
+            <a href="minhas-doacoes.html">Minhas Doações</a>
 
-<main>
+            <a href="favoritos.html">Favoritos</a>
 
-    <h2>Minhas Doações</h2>
+            <a href="perfil.html">Perfil</a>
 
-    <div id="listaDoacoes" class="lista-doacoes">
+        </nav>
 
-    </div>
+    </header>
 
-</main>
 
-<script src="js/minhas-doacoes.js"></script>
+    <!-- CONTEÚDO -->
+
+    <main>
+
+        <section class="titulo-pagina">
+
+            <h2>Minhas Doações</h2>
+
+            <p>
+                Aqui estão todas as doações que você publicou.
+            </p>
+
+        </section>
+
+
+        <section id="listaMinhasDoacoes" class="doacoes">
+
+            <!-- As doações serão carregadas pelo JavaScript -->
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <p>
+            © 2026 DOALINK - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+    <script src="js/minhas-doacoes.js"></script>
 
 </body>
 
