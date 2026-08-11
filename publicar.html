@@ -1,82 +1,224 @@
-// ==============================
-// DOALINK
-// Publicar Doação
-// ==============================
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+<head>
 
-if(!usuario){
+    <meta charset="UTF-8">
 
-    window.location.href="login.html";
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-}
+    <title>DOALINK | Publicar Doação</title>
 
-const form=document.getElementById("formDoacao");
+    <link rel="stylesheet" href="css/publicar.css">
 
-form.addEventListener("submit",function(e){
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    e.preventDefault();
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    const titulo=document.getElementById("titulo").value;
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    const descricao=document.getElementById("descricao").value;
+</head>
 
-    const categoria=document.getElementById("categoria").value;
+<body>
 
-    const cidade=document.getElementById("cidade").value;
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
 
-    const telefone=document.getElementById("telefone").value;
+    <header>
 
-    const imagem=document.getElementById("imagem").files[0];
+        <div class="logo">
 
-    let leitor=new FileReader();
+            <h1>DOALINK</h1>
 
-    leitor.onload=function(){
+        </div>
 
-        let foto=leitor.result;
+        <nav>
 
-        let doacoes=JSON.parse(localStorage.getItem("doacoes"))||[];
+            <a href="home.html">Início</a>
 
-        doacoes.push({
+            <a href="publicar.html">Publicar Doação</a>
 
-            id:Date.now(),
+            <a href="minhas-doacoes.html">Minhas Doações</a>
 
-            usuario:usuario.nome,
+            <a href="favoritos.html">Favoritos</a>
 
-            email:usuario.email,
+            <a href="perfil.html">Perfil</a>
 
-            titulo,
+        </nav>
 
-            descricao,
+    </header>
 
-            categoria,
 
-            cidade,
+    <!-- =========================
+         CONTEÚDO
+    ========================== -->
 
-            telefone,
+    <main>
 
-            imagem:foto,
+        <section class="formulario">
 
-            data:new Date().toLocaleDateString()
+            <h2>Publicar uma Doação</h2>
 
-        });
+            <p>
+                Preencha as informações abaixo para disponibilizar
+                um item para alguém que precisa.
+            </p>
 
-        localStorage.setItem("doacoes",JSON.stringify(doacoes));
 
-        alert("Doação publicada com sucesso!");
+            <form id="formDoacao">
 
-        window.location.href="home.html";
+                <div class="campo">
 
-    }
+                    <label for="titulo">
+                        Título da doação
+                    </label>
 
-    if(imagem){
+                    <input
+                        type="text"
+                        id="titulo"
+                        placeholder="Ex: Roupas infantis"
+                        required
+                    >
 
-        leitor.readAsDataURL(imagem);
+                </div>
 
-    }else{
 
-        alert("Escolha uma imagem.");
+                <div class="campo">
 
-    }
+                    <label for="descricao">
+                        Descrição
+                    </label>
 
-});
+                    <textarea
+                        id="descricao"
+                        placeholder="Descreva o item que será doado"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="categoria">
+                        Categoria
+                    </label>
+
+                    <select id="categoria" required>
+
+                        <option value="">
+                            Selecione uma categoria
+                        </option>
+
+                        <option value="Roupas">
+                            Roupas
+                        </option>
+
+                        <option value="Alimentos">
+                            Alimentos
+                        </option>
+
+                        <option value="Móveis">
+                            Móveis
+                        </option>
+
+                        <option value="Materiais Escolares">
+                            Materiais Escolares
+                        </option>
+
+                        <option value="Brinquedos">
+                            Brinquedos
+                        </option>
+
+                        <option value="Eletrônicos">
+                            Eletrônicos
+                        </option>
+
+                        <option value="Outros">
+                            Outros
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="cidade">
+                        Cidade
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cidade"
+                        placeholder="Digite sua cidade"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="telefone">
+                        Telefone para contato
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="telefone"
+                        placeholder="Ex: (11) 99999-9999"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="imagem">
+                        Imagem da doação
+                    </label>
+
+                    <input
+                        type="file"
+                        id="imagem"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
+                <button type="submit">
+                    Publicar Doação
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 DOALINK - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/publicar.js"></script>
+
+</body>
+
+</html>
