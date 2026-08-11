@@ -158,7 +158,7 @@ function abrirDetalhes(id){
 
     localStorage.setItem("doacaoSelecionada", id);
 
-    window.location.href = "detalhes.html";
+    window.location.href = "detalhe.html";
 
 }
 // =============================
