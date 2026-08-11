@@ -2,51 +2,59 @@
 // DOALINK - PUBLICAR DOAÇÃO
 // =====================================
 
-// Verifica se existe um usuário logado
-const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+// Verifica se existe usuário logado
+const usuario = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+);
 
-if (!usuarioLogado) {
+if (!usuario) {
 
-    alert("Faça login para acessar esta página.");
+    alert("Faça login para publicar uma doação.");
 
     window.location.href = "login.html";
 
 }
 
+
 // Formulário
 const form = document.getElementById("formDoacao");
 
-form.addEventListener("submit", function(event){
+
+// Quando o formulário for enviado
+form.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    const titulo = document.getElementById("titulo").value.trim();
 
-    const descricao = document.getElementById("descricao").value.trim();
+    // Pega os valores
+    const titulo =
+        document.getElementById("titulo").value;
 
-    const categoria = document.getElementById("categoria").value;
+    const descricao =
+        document.getElementById("descricao").value;
 
-    const cidade = document.getElementById("cidade").value.trim();
+    const categoria =
+        document.getElementById("categoria").value;
 
-    const telefone = document.getElementById("telefone").value.trim();
+    const cidade =
+        document.getElementById("cidade").value;
 
-    let imagem = document.getElementById("imagem").value.trim();
+    const telefone =
+        document.getElementById("telefone").value;
 
-    // Caso o usuário não informe uma imagem,
-    // usamos uma imagem padrão.
-    if(imagem === ""){
+    const imagem =
+        document.getElementById("imagem");
 
-        imagem = "https://via.placeholder.com/400x250?text=DOALINK";
 
-    }
+    // Busca as doações já existentes
+    let doacoes =
+        JSON.parse(localStorage.getItem("doacoes")) || [];
 
+
+    // Cria uma nova doação
     const novaDoacao = {
 
         id: Date.now(),
-
-        usuario: usuarioLogado.nome,
-
-        email: usuarioLogado.email,
 
         titulo: titulo,
 
@@ -58,20 +66,54 @@ form.addEventListener("submit", function(event){
 
         telefone: telefone,
 
-        imagem: imagem,
+        usuario: usuario.nome,
 
-        data: new Date().toLocaleDateString("pt-BR")
+        email: usuario.email || "",
+
+        data: new Date().toLocaleDateString("pt-BR"),
+
+        imagem: ""
 
     };
 
-    let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
 
-    doacoes.push(novaDoacao);
+    // Verifica se foi selecionada uma imagem
+    if (imagem.files.length > 0) {
 
-    localStorage.setItem("doacoes", JSON.stringify(doacoes));
+        const leitor = new FileReader();
 
-    alert("Doação publicada com sucesso!");
+        leitor.onload = function() {
 
-    window.location.href = "home.html";
+            novaDoacao.imagem = leitor.result;
 
-});01
+            doacoes.push(novaDoacao);
+
+            localStorage.setItem(
+                "doacoes",
+                JSON.stringify(doacoes)
+            );
+
+            alert("Doação publicada com sucesso! ❤️");
+
+            window.location.href = "home.html";
+
+        };
+
+        leitor.readAsDataURL(imagem.files[0]);
+
+    } else {
+
+        doacoes.push(novaDoacao);
+
+        localStorage.setItem(
+            "doacoes",
+            JSON.stringify(doacoes)
+        );
+
+        alert("Doação publicada com sucesso! ❤️");
+
+        window.location.href = "home.html";
+
+    }
+
+});
