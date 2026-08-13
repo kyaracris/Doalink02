@@ -38,32 +38,36 @@ if (!usuarioLogado) {
 
     const minhasDoacoes = doacoes.filter(function(doacao) {
 
-        // Caso a doação tenha usuarioId
-        if (
-            doacao.usuarioId &&
-            (
-                doacao.usuarioId === nomeUsuario ||
-                doacao.usuarioId === emailUsuario
-            )
-        ) {
-            return true;
-        }
+    // Verifica pelo ID do usuário
+    if (
+        doacao.usuarioId &&
+        (
+            doacao.usuarioId === nomeUsuario ||
+            doacao.usuarioId === emailUsuario
+        )
+    ) {
+        return true;
+    }
 
-        // Caso a doação tenha sido salva com usuario
-        if (
-            doacao.usuario &&
-            (
-                doacao.usuario === nomeUsuario ||
-                doacao.usuario === emailUsuario
-            )
-        ) {
-            return true;
-        }
+    // Verifica pelo nome do usuário
+    if (
+        doacao.usuario &&
+        doacao.usuario === nomeUsuario
+    ) {
+        return true;
+    }
 
-        return false;
+    // Verifica pelo e-mail da doação
+    if (
+        doacao.email &&
+        doacao.email === emailUsuario
+    ) {
+        return true;
+    }
 
-    });
+    return false;
 
+});
     // =====================================
     // VERIFICA SE EXISTEM DOAÇÕES
     // =====================================
