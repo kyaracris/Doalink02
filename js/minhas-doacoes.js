@@ -2,12 +2,10 @@
 // DOALINK - MINHAS DOAÇÕES
 // =====================================
 
-
 // Verifica se existe usuário logado
 const usuarioLogado = JSON.parse(
     localStorage.getItem("usuarioLogado")
 );
-
 
 if (!usuarioLogado) {
 
@@ -15,139 +13,182 @@ if (!usuarioLogado) {
 
     window.location.href = "login.html";
 
-}
+} else {
 
+    // Busca todas as doações
+    const doacoes = JSON.parse(
+        localStorage.getItem("doacoes")
+    ) || [];
 
-// Busca todas as doações
-const doacoes = JSON.parse(
-    localStorage.getItem("doacoes")
-) || [];
+    // Área onde as doações serão exibidas
+    const lista = document.getElementById(
+        "listaMinhasDoacoes"
+    );
 
+    // =====================================
+    // IDENTIFICA O USUÁRIO LOGADO
+    // =====================================
 
-// Área onde as doações serão exibidas
-const lista = document.getElementById(
-    "listaMinhasDoacoes"
-);
+    const nomeUsuario = usuarioLogado.nome || "";
+    const emailUsuario = usuarioLogado.email || "";
 
+    // =====================================
+    // FILTRA AS DOAÇÕES DO USUÁRIO
+    // =====================================
 
-// Filtra somente as doações do usuário logado
-const minhasDoacoes = doacoes.filter(function(doacao) {
+    const minhasDoacoes = doacoes.filter(function(doacao) {
 
-    const identificadorUsuario =
-        usuarioLogado.email || usuarioLogado.nome;
+        // Caso a doação tenha usuarioId
+        if (
+            doacao.usuarioId &&
+            (
+                doacao.usuarioId === nomeUsuario ||
+                doacao.usuarioId === emailUsuario
+            )
+        ) {
+            return true;
+        }
 
-    return doacao.usuarioId === identificadorUsuario;
+        // Caso a doação tenha sido salva com usuario
+        if (
+            doacao.usuario &&
+            (
+                doacao.usuario === nomeUsuario ||
+                doacao.usuario === emailUsuario
+            )
+        ) {
+            return true;
+        }
 
-});
+        return false;
 
+    });
 
-// Verifica se o usuário possui doações
-if (minhasDoacoes.length === 0) {
+    // =====================================
+    // VERIFICA SE EXISTEM DOAÇÕES
+    // =====================================
 
-    lista.innerHTML = `
+    if (minhasDoacoes.length === 0) {
 
-        <div class="sem-doacoes">
+        lista.innerHTML = `
 
-            <h2>Você ainda não publicou nenhuma doação.</h2>
+            <div class="sem-doacoes">
 
-            <p>
-                Publique uma doação e ajude alguém que precisa! ❤️
-            </p>
+                <h2>Você ainda não publicou nenhuma doação.</h2>
 
-            <a href="publicar.html">
-                Publicar uma Doação
-            </a>
+                <p>
+                    Publique uma doação e ajude alguém que precisa! ❤️
+                </p>
 
-        </div>
-
-    `;
-
-}
-
-
-// Mostra as doações
-else {
-
-    minhasDoacoes.forEach(function(doacao) {
-
-        lista.innerHTML += `
-
-            <div class="card">
-
-                ${
-                    doacao.imagem
-                    ?
-                    `<img src="${doacao.imagem}" alt="Imagem da doação">`
-                    :
-                    `<div class="sem-imagem">
-                        Sem imagem
-                    </div>`
-                }
-
-                <div class="card-conteudo">
-
-                    <h3>${doacao.titulo}</h3>
-
-                    <p>
-                        ${doacao.descricao}
-                    </p>
-
-                    <p>
-                        <strong>Categoria:</strong>
-                        ${doacao.categoria}
-                    </p>
-
-                    <p>
-                        <strong>Cidade:</strong>
-                        ${doacao.cidade}
-                    </p>
-
-                    <p>
-                        <strong>Telefone:</strong>
-                        ${doacao.telefone}
-                    </p>
-
-                    <p>
-                        <strong>Data:</strong>
-                        ${doacao.data}
-                    </p>
-
-                    <button
-                        onclick="verDetalhes('${doacao.id}')"
-                    >
-                        Ver Detalhes
-                    </button>
-
-                </div>
+                <a href="publicar.html">
+                    Publicar uma Doação
+                </a>
 
             </div>
 
         `;
 
-    });
+    }
 
-}
+    // =====================================
+    // MOSTRA AS DOAÇÕES
+    // =====================================
 
+    else {
 
-// Ver detalhes da doação
-function verDetalhes(id) {
+        lista.innerHTML = "";
 
-    localStorage.setItem(
-        "doacaoSelecionada",
-        id
-    );
+        minhasDoacoes.forEach(function(doacao) {
 
-    window.location.href = "detalhe.html";
+            lista.innerHTML += `
 
-}
+                <div class="card">
 
+                    ${
+                        doacao.imagem
+                        ?
+                        `<img
+                            src="${doacao.imagem}"
+                            alt="Imagem da doação"
+                        >`
+                        :
+                        `<div class="sem-imagem">
+                            Sem imagem
+                        </div>`
+                    }
 
-// Atualiza o ano do rodapé
-const footer = document.querySelector("footer p");
+                    <div class="card-conteudo">
 
-if (footer) {
+                        <h3>
+                            ${doacao.titulo}
+                        </h3>
 
-    footer.innerHTML =
-        `© ${new Date().getFullYear()} DOALINK - Todos os direitos reservados.`;
+                        <p>
+                            ${doacao.descricao}
+                        </p>
+
+                        <p>
+                            <strong>Categoria:</strong>
+                            ${doacao.categoria}
+                        </p>
+
+                        <p>
+                            <strong>Cidade:</strong>
+                            ${doacao.cidade}
+                        </p>
+
+                        <p>
+                            <strong>Telefone:</strong>
+                            ${doacao.telefone}
+                        </p>
+
+                        <p>
+                            <strong>Data:</strong>
+                            ${doacao.data}
+                        </p>
+
+                        <button
+                            onclick="verDetalhes('${doacao.id}')"
+                        >
+                            Ver Detalhes
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    }
+
+    // =====================================
+    // VER DETALHES DA DOAÇÃO
+    // =====================================
+
+    window.verDetalhes = function(id) {
+
+        localStorage.setItem(
+            "doacaoSelecionada",
+            id
+        );
+
+        window.location.href = "detalhe.html";
+
+    };
+
+    // =====================================
+    // ATUALIZA O ANO DO RODAPÉ
+    // =====================================
+
+    const footer = document.querySelector("footer p");
+
+    if (footer) {
+
+        footer.innerHTML =
+            `© ${new Date().getFullYear()} DOALINK - Todos os direitos reservados.`;
+
+    }
 
 }
