@@ -1,106 +1,146 @@
 // =====================================
-// DOALINK - PERFIL
+// DOALINK - MEU PERFIL
 // =====================================
 
-// Verifica se existe usuário logado
+// Recupera o usuário logado
 const usuarioLogado = JSON.parse(
     localStorage.getItem("usuarioLogado")
 );
 
+// Verifica se existe usuário logado
 if (!usuarioLogado) {
 
-    alert("Faça login para continuar.");
+    alert("Faça login para acessar seu perfil.");
 
     window.location.href = "login.html";
 
 } else {
 
-    // ================================
+    // =====================================
     // DADOS DO USUÁRIO
-    // ================================
+    // =====================================
 
     const nome = usuarioLogado.nome || "Usuário";
-
-    const email = usuarioLogado.email || "E-mail não informado";
-
-
-    // Mostra nome
-    document.getElementById("nomeUsuario").textContent = nome;
-
-    document.getElementById("nomeCompleto").textContent = nome;
+    const email = usuarioLogado.email || "Não informado";
 
 
-    // Mostra e-mail
-    document.getElementById("emailUsuario").textContent = email;
+    // =====================================
+    // MOSTRA NOME E E-MAIL
+    // =====================================
 
-    document.getElementById("emailCompleto").textContent = email;
+    const nomeCompleto =
+        document.getElementById("nomeCompleto");
+
+    const emailCompleto =
+        document.getElementById("emailCompleto");
 
 
-    // ================================
-    // BUSCA DOAÇÕES
-    // ================================
+    if (nomeCompleto) {
+        nomeCompleto.textContent = nome;
+    }
+
+    if (emailCompleto) {
+        emailCompleto.textContent = email;
+    }
+
+
+    // =====================================
+    // BUSCA AS DOAÇÕES
+    // =====================================
 
     const doacoes = JSON.parse(
         localStorage.getItem("doacoes")
     ) || [];
 
 
-    // Conta somente as doações do usuário
+    // =====================================
+    // CONTA SOMENTE AS DOAÇÕES DO USUÁRIO
+    // =====================================
+
     const minhasDoacoes = doacoes.filter(function(doacao) {
 
         return (
             doacao.usuario === nome ||
-            doacao.email === email
+            doacao.email === email ||
+            doacao.usuarioId === nome ||
+            doacao.usuarioId === email
         );
 
     });
 
 
-    document.getElementById("totalDoacoes").textContent =
-        minhasDoacoes.length;
+    // =====================================
+    // MOSTRA TOTAL DE DOAÇÕES
+    // =====================================
+
+    const totalDoacoes =
+        document.getElementById("totalDoacoes");
+
+    if (totalDoacoes) {
+
+        totalDoacoes.textContent =
+            minhasDoacoes.length;
+
+    }
 
 
-    // ================================
-    // BUSCA FAVORITOS
-    // ================================
+    // =====================================
+    // BUSCA OS FAVORITOS
+    // =====================================
 
     const favoritos = JSON.parse(
         localStorage.getItem("favoritos")
     ) || [];
 
 
-    document.getElementById("totalFavoritos").textContent =
-        favoritos.length;
+    // =====================================
+    // MOSTRA TOTAL DE FAVORITOS
+    // =====================================
+
+    const totalFavoritos =
+        document.getElementById("totalFavoritos");
+
+    if (totalFavoritos) {
+
+        totalFavoritos.textContent =
+            favoritos.length;
+
+    }
 
 
-    // ================================
-    // BOTÃO SAIR
-    // ================================
+    // =====================================
+    // BOTÃO SAIR DA CONTA
+    // =====================================
 
-    const btnSair = document.getElementById("btnSair");
+    const btnSair =
+        document.getElementById("btnSair");
 
-    btnSair.addEventListener("click", function() {
+    if (btnSair) {
 
-        const confirmar = confirm(
-            "Tem certeza que deseja sair da sua conta?"
-        );
+        btnSair.addEventListener("click", function() {
 
-        if (confirmar) {
+            const confirmar =
+                confirm("Deseja realmente sair da sua conta?");
 
-            localStorage.removeItem("usuarioLogado");
+            if (confirmar) {
 
-            window.location.href = "login.html";
+                localStorage.removeItem("usuarioLogado");
 
-        }
+                window.location.href = "login.html";
 
-    });
+            }
+
+        });
+
+    }
 
 
-    // ================================
-    // ATUALIZA ANO
-    // ================================
+    // =====================================
+    // ATUALIZA O ANO DO RODAPÉ
+    // =====================================
 
-    const footer = document.querySelector("footer p");
+    const footer =
+        document.querySelector("footer p");
 
     if (footer) {
 
