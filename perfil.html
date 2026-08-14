@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Meu Perfil | DOALINK</title>
+    <title>DOALINK | Meu Perfil</title>
 
     <link rel="stylesheet" href="css/perfil.css">
 
@@ -15,63 +15,183 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
 </head>
 
 <body>
 
-<header>
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
 
-    <h1>DOALINK</h1>
+    <header>
 
-    <nav>
+        <div class="logo">
 
-        <a href="home.html">Início</a>
+            <h1>DOALINK</h1>
 
-        <a href="publicar.html">Nova Doação</a>
+        </div>
 
-        <a href="minhas-doacoes.html">Minhas Doações</a>
+        <nav>
 
-        <a href="index.html" id="sair">Sair</a>
+            <a href="home.html">Início</a>
 
-    </nav>
+            <a href="publicar.html">Publicar Doação</a>
 
-</header>
+            <a href="minhas-doacoes.html">Minhas Doações</a>
 
-<div class="container">
+            <a href="favoritos.html">Favoritos</a>
 
-    <div class="perfil-card">
+            <a href="perfil.html">Perfil</a>
 
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Usuário">
+        </nav>
 
-        <h2>Meu Perfil</h2>
+    </header>
 
-        <form id="formPerfil">
 
-            <label>Nome</label>
-            <input type="text" id="nome">
+    <!-- =========================
+         PERFIL
+    ========================== -->
 
-            <label>E-mail</label>
-            <input type="email" id="email">
+    <main>
 
-            <label>Nova Senha</label>
-            <input type="password" id="senha">
+        <section class="perfil">
 
-            <button type="submit">
+            <div class="perfil-topo">
 
-                Salvar Alterações
+                <div class="avatar">
 
-            </button>
+                    👤
 
-        </form>
+                </div>
 
-    </div>
+                <h2 id="nomeUsuario">
+                    Usuário
+                </h2>
 
-</div>
+                <p id="emailUsuario">
+                    usuario@email.com
+                </p>
 
-<script src="js/perfil.js"></script>
+            </div>
+
+
+            <!-- =========================
+                 INFORMAÇÕES
+            ========================== -->
+
+            <div class="informacoes">
+
+                <div class="info">
+
+                    <h3>Nome</h3>
+
+                    <p id="nomeCompleto">
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="info">
+
+                    <h3>E-mail</h3>
+
+                    <p id="emailCompleto">
+                        -
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 ESTATÍSTICAS
+            ========================== -->
+
+            <div class="estatisticas">
+
+                <div class="estatistica">
+
+                    <span id="totalDoacoes">
+                        0
+                    </span>
+
+                    <p>Doações publicadas</p>
+
+                </div>
+
+
+                <div class="estatistica">
+
+                    <span id="totalFavoritos">
+                        0
+                    </span>
+
+                    <p>Favoritos</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 BOTÕES
+            ========================== -->
+
+            <div class="acoes">
+
+                <a
+                    href="publicar.html"
+                    class="botao"
+                >
+                    Publicar Doação
+                </a>
+
+
+                <a
+                    href="minhas-doacoes.html"
+                    class="botao"
+                >
+                    Minhas Doações
+                </a>
+
+
+                <button
+                    id="btnSair"
+                    class="botao sair"
+                >
+                    Sair da Conta
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 DOALINK - Todos os direitos reservados.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="js/perfil.js"></script>
 
 </body>
 

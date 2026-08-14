@@ -1,65 +1,112 @@
-// Verifica login
-const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+// =====================================
+// DOALINK - PERFIL
+// =====================================
 
-if(!usuario){
+// Verifica se existe usuário logado
+const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+);
 
-    window.location.href="login.html";
+if (!usuarioLogado) {
 
-}
+    alert("Faça login para continuar.");
 
-// Preenche os campos
+    window.location.href = "login.html";
 
-document.getElementById("nome").value=usuario.nome;
+} else {
 
-document.getElementById("email").value=usuario.email;
+    // ================================
+    // DADOS DO USUÁRIO
+    // ================================
 
-// Atualizar perfil
+    const nome = usuarioLogado.nome || "Usuário";
 
-document.getElementById("formPerfil").addEventListener("submit",function(e){
+    const email = usuarioLogado.email || "E-mail não informado";
 
-    e.preventDefault();
 
-    const novoNome=document.getElementById("nome").value;
+    // Mostra nome
+    document.getElementById("nomeUsuario").textContent = nome;
 
-    const novoEmail=document.getElementById("email").value;
+    document.getElementById("nomeCompleto").textContent = nome;
 
-    const novaSenha=document.getElementById("senha").value;
 
-    let usuarios=JSON.parse(localStorage.getItem("usuarios"))||[];
+    // Mostra e-mail
+    document.getElementById("emailUsuario").textContent = email;
 
-    usuarios=usuarios.map(u=>{
+    document.getElementById("emailCompleto").textContent = email;
 
-        if(u.email===usuario.email){
 
-            u.nome=novoNome;
+    // ================================
+    // BUSCA DOAÇÕES
+    // ================================
 
-            u.email=novoEmail;
+    const doacoes = JSON.parse(
+        localStorage.getItem("doacoes")
+    ) || [];
 
-            if(novaSenha!=""){
 
-                u.senha=novaSenha;
+    // Conta somente as doações do usuário
+    const minhasDoacoes = doacoes.filter(function(doacao) {
 
-            }
-
-        }
-
-        return u;
+        return (
+            doacao.usuario === nome ||
+            doacao.email === email
+        );
 
     });
 
-    localStorage.setItem("usuarios",JSON.stringify(usuarios));
 
-    usuario.nome=novoNome;
-    usuario.email=novoEmail;
+    document.getElementById("totalDoacoes").textContent =
+        minhasDoacoes.length;
 
-    if(novaSenha!=""){
 
-        usuario.senha=novaSenha;
+    // ================================
+    // BUSCA FAVORITOS
+    // ================================
+
+    const favoritos = JSON.parse(
+        localStorage.getItem("favoritos")
+    ) || [];
+
+
+    document.getElementById("totalFavoritos").textContent =
+        favoritos.length;
+
+
+    // ================================
+    // BOTÃO SAIR
+    // ================================
+
+    const btnSair = document.getElementById("btnSair");
+
+    btnSair.addEventListener("click", function() {
+
+        const confirmar = confirm(
+            "Tem certeza que deseja sair da sua conta?"
+        );
+
+        if (confirmar) {
+
+            localStorage.removeItem("usuarioLogado");
+
+            window.location.href = "login.html";
+
+        }
+
+    });
+
+
+    // ================================
+    // ATUALIZA ANO
+    // ================================
+
+    const footer = document.querySelector("footer p");
+
+    if (footer) {
+
+        footer.innerHTML =
+            `© ${new Date().getFullYear()} DOALINK - Todos os direitos reservados.`;
 
     }
 
-    localStorage.setItem("usuarioLogado",JSON.stringify(usuario));
-
-    alert("Perfil atualizado com sucesso!");
-
-});
+}

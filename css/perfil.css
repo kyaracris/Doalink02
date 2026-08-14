@@ -1,155 +1,308 @@
-*{
+/* =====================================
+   DOALINK - PERFIL
+===================================== */
 
-    margin:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-    padding:0;
+body {
+    background: #f5f5f5;
+    min-height: 100vh;
+}
 
-    box-sizing:border-box;
 
-    font-family:'Poppins',sans-serif;
+/* ==========================
+        HEADER
+========================== */
+
+header {
+    background: #2E7D32;
+    color: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+.logo h1 {
+    font-size: 30px;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #C8E6C9;
+}
+
+
+/* ==========================
+          PERFIL
+========================== */
+
+main {
+    padding: 60px 20px;
+}
+
+.perfil {
+    max-width: 800px;
+    margin: auto;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+
+/* ==========================
+       TOPO DO PERFIL
+========================== */
+
+.perfil-topo {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+
+    margin: auto;
+    margin-bottom: 20px;
+
+    border-radius: 50%;
+
+    background: #C8E6C9;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 45px;
+}
+
+.perfil-topo h2 {
+    color: #2E7D32;
+
+    font-size: 30px;
+
+    margin-bottom: 5px;
+}
+
+.perfil-topo p {
+    color: #777;
+}
+
+
+/* ==========================
+       INFORMAÇÕES
+========================== */
+
+.informacoes {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+.info {
+    background: #f5f5f5;
+
+    padding: 20px;
+
+    border-radius: 12px;
+}
+
+.info h3 {
+    color: #2E7D32;
+
+    margin-bottom: 8px;
+}
+
+.info p {
+    color: #555;
+
+    word-break: break-word;
+}
+
+
+/* ==========================
+       ESTATÍSTICAS
+========================== */
+
+.estatisticas {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    margin-bottom: 35px;
+}
+
+.estatistica {
+    text-align: center;
+
+    padding: 25px;
+
+    background: #E8F5E9;
+
+    border-radius: 12px;
+}
+
+.estatistica span {
+    display: block;
+
+    color: #2E7D32;
+
+    font-size: 35px;
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.estatistica p {
+    color: #555;
+}
+
+
+/* ==========================
+          AÇÕES
+========================== */
+
+.acoes {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.botao {
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2E7D32;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botao:hover {
+    background: #1B5E20;
+
+    transform: translateY(-2px);
+}
+
+.botao.sair {
+    background: #c62828;
+}
+
+.botao.sair:hover {
+    background: #8e0000;
+}
+
+
+/* ==========================
+          RODAPÉ
+========================== */
+
+footer {
+    background: #1B5E20;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    margin-top: 20px;
+}
+
+
+/* ==========================
+        RESPONSIVO
+========================== */
+
+@media (max-width: 800px) {
+
+    header {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
 
 }
 
-body{
+@media (max-width: 600px) {
 
-    background:#f5f5f5;
+    .perfil {
+        padding: 25px;
+    }
 
-}
+    .informacoes {
+        grid-template-columns: 1fr;
+    }
 
-header{
+    .estatisticas {
+        grid-template-columns: 1fr;
+    }
 
-    background:#2E7D32;
+    .acoes {
+        flex-direction: column;
+    }
 
-    color:white;
+    .botao {
+        text-align: center;
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:20px 8%;
-
-}
-
-nav{
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-.container{
-
-    display:flex;
-
-    justify-content:center;
-
-    padding:60px 20px;
-
-}
-
-.perfil-card{
-
-    background:white;
-
-    width:450px;
-
-    border-radius:15px;
-
-    padding:40px;
-
-    text-align:center;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
-
-}
-
-.perfil-card img{
-
-    width:130px;
-
-    margin-bottom:20px;
-
-}
-
-.perfil-card h2{
-
-    color:#2E7D32;
-
-    margin-bottom:30px;
-
-}
-
-form{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-label{
-
-    text-align:left;
-
-    margin-top:15px;
-
-    margin-bottom:8px;
-
-    font-weight:600;
-
-}
-
-input{
-
-    padding:15px;
-
-    border:1px solid #ccc;
-
-    border-radius:8px;
-
-    outline:none;
-
-}
-
-input:focus{
-
-    border-color:#2E7D32;
-
-}
-
-button{
-
-    margin-top:30px;
-
-    padding:15px;
-
-    background:#2E7D32;
-
-    color:white;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-}
-
-button:hover{
-
-    background:#1B5E20;
+        width: 100%;
+    }
 
 }
