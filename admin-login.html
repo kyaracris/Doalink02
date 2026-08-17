@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Área Administrativa | DOALINK</title>
+    <title>DOALINK | Login Administrativo</title>
 
     <link rel="stylesheet" href="css/admin-login.css">
 
@@ -15,8 +15,10 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
 </head>
 
@@ -26,27 +28,50 @@
 
         <div class="login-box">
 
-            <h1>DOALINK</h1>
+            <div class="logo">
+                <h1>DOALINK</h1>
+            </div>
 
             <h2>Área Administrativa</h2>
 
-            <p>Acesse o painel de gerenciamento.</p>
+            <p>
+                Acesse o painel administrativo da plataforma.
+            </p>
+
 
             <form id="formAdmin">
 
-                <input
-                    type="text"
-                    id="usuarioAdmin"
-                    placeholder="Usuário"
-                    required
-                >
+                <div class="campo">
 
-                <input
-                    type="password"
-                    id="senhaAdmin"
-                    placeholder="Senha"
-                    required
-                >
+                    <label for="usuarioAdmin">
+                        Usuário
+                    </label>
+
+                    <input
+                        type="text"
+                        id="usuarioAdmin"
+                        placeholder="Digite o usuário"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo">
+
+                    <label for="senhaAdmin">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senhaAdmin"
+                        placeholder="Digite a senha"
+                        required
+                    >
+
+                </div>
+
 
                 <button type="submit">
                     Entrar
@@ -54,13 +79,15 @@
 
             </form>
 
-            <a href="index.html">
-                Voltar para o início
+
+            <a href="perfil.html" class="voltar">
+                ← Voltar para o Perfil
             </a>
 
         </div>
 
     </main>
+
 
     <script src="js/admin-login.js"></script>
 
