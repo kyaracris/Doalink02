@@ -1,115 +1,367 @@
-*{
+/* =====================================
+   DOALINK - DETALHES DA DOAÇÃO
+   ===================================== */
 
-    margin:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    padding:0;
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f5f7f5;
+    color: #333;
+}
 
-    box-sizing:border-box;
 
-    font-family:'Poppins',sans-serif;
+/* =====================================
+   CABEÇALHO
+   ===================================== */
+
+header {
+    height: 90px;
+    background: #2e7d32;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 8%;
+}
+
+.logo h1 {
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #c8e6c9;
+}
+
+
+/* =====================================
+   CONTEÚDO PRINCIPAL
+   ===================================== */
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 55px auto;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 40px;
+
+    display: grid;
+    grid-template-columns: 45% 55%;
+
+    gap: 45px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================================
+   IMAGEM
+   ===================================== */
+
+.imagem {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.imagem img {
+    width: 100%;
+    max-width: 430px;
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =====================================
+   INFORMAÇÕES
+   ===================================== */
+
+.informacoes {
+    padding: 10px 10px 10px 0;
+}
+
+.informacoes h2 {
+    color: #2e7d32;
+
+    font-size: 28px;
+
+    margin-bottom: 15px;
+}
+
+.informacoes > p {
+    margin-bottom: 13px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+.informacoes strong {
+    color: #2e7d32;
+}
+
+#descricao {
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
+    color: #666;
+}
+
+
+/* =====================================
+   BOTÃO TENHO INTERESSE
+   ===================================== */
+
+#interesse {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#interesse:hover {
+    background: #256b29;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   FORMULÁRIO DE CONTATO
+   ===================================== */
+
+.form-contato {
+    margin-top: 25px;
+
+    padding: 25px;
+
+    background: #f1f8f2;
+
+    border: 1px solid #d7ead9;
+
+    border-radius: 12px;
+
+    animation: aparecer 0.3s ease;
+}
+
+.form-contato h3 {
+    color: #2e7d32;
+
+    font-size: 20px;
+
+    margin-bottom: 8px;
+}
+
+.form-contato > p {
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* LABELS */
+
+.form-contato label {
+    display: block;
+
+    margin-bottom: 6px;
+
+    margin-top: 15px;
+
+    color: #333;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* CAMPOS */
+
+.form-contato input,
+.form-contato textarea {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.form-contato input:focus,
+.form-contato textarea:focus {
+    border-color: #2e7d32;
+
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.1);
+}
+
+.form-contato textarea {
+    resize: vertical;
+
+    min-height: 110px;
+}
+
+
+/* BOTÃO ENVIAR */
+
+#enviarMensagem {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#enviarMensagem:hover {
+    background: #256b29;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   ANIMAÇÃO
+   ===================================== */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
 }
 
-body{
 
-    background:#f5f5f5;
+/* =====================================
+   RESPONSIVIDADE
+   ===================================== */
 
-}
+@media (max-width: 800px) {
 
-header{
+    header {
+        height: auto;
 
-    background:#2E7D32;
+        padding: 20px;
 
-    color:white;
+        flex-direction: column;
 
-    display:flex;
+        gap: 15px;
+    }
 
-    justify-content:space-between;
+    nav {
+        gap: 15px;
 
-    align-items:center;
+        flex-wrap: wrap;
 
-    padding:20px 8%;
+        justify-content: center;
+    }
 
-}
+    .container {
+        grid-template-columns: 1fr;
 
-nav{
+        padding: 25px;
 
-    display:flex;
+        margin: 30px auto;
+    }
 
-    gap:20px;
+    .imagem img {
+        height: 400px;
+    }
 
-}
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-}
-
-.container{
-
-    width:90%;
-
-    max-width:1200px;
-
-    margin:50px auto;
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:50px;
-
-}
-
-.imagem img{
-
-    width:100%;
-
-    border-radius:15px;
-
-}
-
-.informacoes h2{
-
-    color:#2E7D32;
-
-    margin-bottom:20px;
-
-}
-
-.informacoes p{
-
-    margin:15px 0;
-
-    font-size:18px;
-
-}
-
-button{
-
-    margin-top:30px;
-
-    padding:15px 30px;
-
-    border:none;
-
-    border-radius:8px;
-
-    background:#2E7D32;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:17px;
-
-}
-
-button:hover{
-
-    background:#1B5E20;
+    .informacoes {
+        padding: 0;
+    }
 
 }
