@@ -3,10 +3,12 @@
 // =====================================
 
 
-// Verifica se existe usuário logado
-const usuarioLogado = JSON.parse(
-    localStorage.getItem("usuarioLogado")
-);
+// =====================================
+// VERIFICA USUÁRIO LOGADO
+// =====================================
+
+const usuarioLogado =
+    JSON.parse(localStorage.getItem("usuarioLogado"));
 
 
 if (!usuarioLogado) {
@@ -18,59 +20,81 @@ if (!usuarioLogado) {
 }
 
 
-// Busca os favoritos salvos
-let favoritos = JSON.parse(
-    localStorage.getItem("favoritos")
-) || [];
+// =====================================
+// CHAVE DOS FAVORITOS
+// =====================================
+
+const chaveFavoritos =
+    "favoritos_" + usuarioLogado.email;
 
 
-// Busca todas as doações
-const doacoes = JSON.parse(
-    localStorage.getItem("doacoes")
-) || [];
+// =====================================
+// BUSCA OS FAVORITOS DO USUÁRIO
+// =====================================
+
+let favoritos =
+    JSON.parse(
+        localStorage.getItem(chaveFavoritos)
+    ) || [];
 
 
-// Local onde os favoritos serão exibidos
-const lista = document.getElementById(
-    "listaFavoritos"
-);
+// =====================================
+// BUSCA TODAS AS DOAÇÕES
+// =====================================
+
+const doacoes =
+    JSON.parse(
+        localStorage.getItem("doacoes")
+    ) || [];
 
 
-// Encontra as doações correspondentes aos favoritos
-const doacoesFavoritas = doacoes.filter(function(doacao) {
+// =====================================
+// LOCAL ONDE OS FAVORITOS APARECEM
+// =====================================
 
-    return favoritos.includes(doacao.id);
+const lista =
+    document.getElementById("listaFavoritos");
 
-});
+
+// =====================================
+// ENCONTRA AS DOAÇÕES FAVORITADAS
+// =====================================
+
+const doacoesFavoritas =
+    doacoes.filter(function(doacao) {
+
+        return favoritos.some(
+            favorito => Number(favorito) === Number(doacao.id)
+        );
+
+    });
 
 
-// Verifica se não existem favoritos
+// =====================================
+// NENHUM FAVORITO
+// =====================================
+
 if (doacoesFavoritas.length === 0) {
 
     lista.innerHTML = `
 
-        <div
-            style="
-                width:100%;
-                text-align:center;
-                padding:60px;
-            "
-        >
+        <div class="sem-favoritos">
+
+            <div class="icone-favorito">
+                ❤️
+            </div>
 
             <h2>
                 Você ainda não possui favoritos.
             </h2>
 
             <p>
-                Encontre uma doação interessante e salve nos favoritos! ❤️
+                Encontre uma doação interessante
+                e salve nos seus favoritos!
             </p>
 
-            <br>
-
             <a href="home.html">
-
                 Ver Doações
-
             </a>
 
         </div>
@@ -80,7 +104,10 @@ if (doacoesFavoritas.length === 0) {
 }
 
 
-// Exibe os favoritos
+// =====================================
+// MOSTRA OS FAVORITOS
+// =====================================
+
 else {
 
     doacoesFavoritas.forEach(function(doacao) {
@@ -92,69 +119,76 @@ else {
                 ${
                     doacao.imagem
                     ?
-                    `<img
+                    `
+                    <img
                         src="${doacao.imagem}"
-                        alt="Imagem da doação"
-                    >`
-                    :
-                    `<div
-                        style="
-                            height:220px;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            background:#eeeeee;
-                        "
+                        alt="${doacao.titulo}"
                     >
+                    `
+                    :
+                    `
+                    <div class="sem-imagem">
                         Sem imagem
-                    </div>`
+                    </div>
+                    `
                 }
 
 
-                <h3>
-                    ${doacao.titulo}
-                </h3>
+                <div class="card-conteudo">
+
+                    <h3>
+                        ${doacao.titulo}
+                    </h3>
 
 
-                <p>
-                    ${doacao.descricao}
-                </p>
+                    <p>
+                        ${doacao.descricao}
+                    </p>
 
 
-                <p>
-                    <strong>Categoria:</strong>
-                    ${doacao.categoria}
-                </p>
+                    <p>
+                        <strong>Categoria:</strong>
+                        ${doacao.categoria}
+                    </p>
 
 
-                <p>
-                    <strong>Cidade:</strong>
-                    ${doacao.cidade}
-                </p>
+                    <p>
+                        <strong>Cidade:</strong>
+                        ${doacao.cidade}
+                    </p>
 
 
-                <p>
-                    <strong>Doador:</strong>
-                    ${doacao.usuario}
-                </p>
+                    <p>
+                        <strong>Doador:</strong>
+                        ${doacao.usuario}
+                    </p>
 
 
-                <button
-                    onclick="verDetalhes('${doacao.id}')"
-                >
-
-                    Ver Detalhes
-
-                </button>
+                    <p>
+                        <strong>Data:</strong>
+                        ${doacao.data}
+                    </p>
 
 
-                <button
-                    onclick="removerFavorito('${doacao.id}')"
-                >
+                    <div class="botoes-card">
 
-                    Remover dos Favoritos
+                        <button
+                            onclick="verDetalhes(${doacao.id})"
+                        >
+                            Ver Detalhes
+                        </button>
 
-                </button>
+
+                        <button
+                            class="botao-remover"
+                            onclick="removerFavorito(${doacao.id})"
+                        >
+                            ❤️ Remover
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -165,7 +199,10 @@ else {
 }
 
 
-// Abrir detalhes
+// =====================================
+// VER DETALHES
+// =====================================
+
 function verDetalhes(id) {
 
     localStorage.setItem(
@@ -173,38 +210,51 @@ function verDetalhes(id) {
         id
     );
 
-    window.location.href = "detalhe.html";
+    window.location.href =
+        "detalhe.html";
 
 }
 
 
-// Remover favorito
+// =====================================
+// REMOVER FAVORITO
+// =====================================
+
 function removerFavorito(id) {
 
-    favoritos = favoritos.filter(function(favorito) {
+    id = Number(id);
 
-        return favorito !== id;
 
-    });
+    favoritos =
+        favoritos.filter(function(favorito) {
+
+            return Number(favorito) !== id;
+
+        });
 
 
     localStorage.setItem(
-        "favoritos",
+        chaveFavoritos,
         JSON.stringify(favoritos)
     );
 
 
-    alert("Doação removida dos favoritos.");
+    alert(
+        "Doação removida dos favoritos."
+    );
 
 
-    // Recarrega a página
     window.location.reload();
 
 }
 
 
-// Atualiza o ano do rodapé
-const footer = document.querySelector("footer p");
+// =====================================
+// RODAPÉ
+// =====================================
+
+const footer =
+    document.querySelector("footer p");
 
 
 if (footer) {

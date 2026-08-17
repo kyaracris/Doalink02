@@ -165,25 +165,70 @@ function abrirDetalhes(id){
 // FAVORITOS
 // =============================
 
-function favoritar(id){
+function favoritar(id) {
 
-    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    // Usuário logado
+    const usuario =
+        JSON.parse(localStorage.getItem("usuarioLogado"));
 
-    if(!favoritos.includes(id)){
+    if (!usuario) {
 
+        alert("Faça login para favoritar uma doação.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    // Cria uma chave exclusiva para cada usuário
+    const chaveFavoritos =
+        "favoritos_" + usuario.email;
+
+
+    // Busca os favoritos desse usuário
+    let favoritos =
+        JSON.parse(
+            localStorage.getItem(chaveFavoritos)
+        ) || [];
+
+
+    // Converte para número para evitar problemas
+    id = Number(id);
+
+
+    // Verifica se já está favoritado
+    if (favoritos.includes(id)) {
+
+        // Remove dos favoritos
+        favoritos =
+            favoritos.filter(
+                favorito => Number(favorito) !== id
+            );
+
+        localStorage.setItem(
+            chaveFavoritos,
+            JSON.stringify(favoritos)
+        );
+
+        alert("Doação removida dos favoritos.");
+
+    } else {
+
+        // Adiciona aos favoritos
         favoritos.push(id);
 
-        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+        localStorage.setItem(
+            chaveFavoritos,
+            JSON.stringify(favoritos)
+        );
 
-        alert("Doação adicionada aos favoritos!");
-
-    }else{
-
-        alert("Essa doação já está nos favoritos.");
+        alert("Doação adicionada aos favoritos! ❤️");
 
     }
 
 }
+
 // =============================
 // RODAPÉ
 // =============================

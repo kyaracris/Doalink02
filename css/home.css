@@ -438,3 +438,137 @@ nav{
     flex:1;
 
 }
+/* =====================================
+   FAVORITOS
+   ===================================== */
+
+.sem-favoritos {
+    width: 100%;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icone-favorito {
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.sem-favoritos h2 {
+    color: #2e7d32;
+
+    margin-bottom: 10px;
+}
+
+.sem-favoritos p {
+    color: #666;
+
+    margin-bottom: 25px;
+}
+
+.sem-favoritos a {
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.sem-favoritos a:hover {
+    background: #256b29;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   BOTÕES DOS CARDS
+   ===================================== */
+
+.botoes-card {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.botoes-card button {
+    flex: 1;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #2e7d32;
+
+    color: white;
+
+    font-family: "Poppins", sans-serif;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botoes-card button:hover {
+    background: #256b29;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================
+   BOTÃO REMOVER
+   ===================================== */
+
+.botoes-card .botao-remover {
+    background: #d32f2f;
+}
+
+.botoes-card .botao-remover:hover {
+    background: #b71c1c;
+}
+
+
+/* =====================================
+   SEM IMAGEM
+   ===================================== */
+
+.sem-imagem {
+    height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eeeeee;
+
+    color: #777;
+
+    border-radius: 10px 10px 0 0;
+}
